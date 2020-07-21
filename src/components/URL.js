@@ -4,6 +4,7 @@ import axios from 'axios';
 function URL() {
 const [value, setValue] = useState(null);
 const [input, setInput] = useState("");
+const [loading,setloading]=useState(false);
 const handleInputChange = (e) => {
   setInput(e.target.value);
 };
@@ -11,10 +12,12 @@ const postdata = {
   longUrl: input,
 };
 const handleURL = () => {
+  setloading(true);
   axios
     .post(`${process.env.REACT_APP_REST_ENDPOINT}/shorten`, postdata)
     .then(({ data: { shortUrl } }) => {
       setValue(shortUrl);
+      setloading(false);
     });
 };
 
@@ -22,9 +25,16 @@ return (
   <>
     <div className="container p-5 ">
       <div className="form-group">
-        <label htmlFor="inputUrl " className="label1">
-          URL
-        </label>
+        {loading ? (
+          <label htmlFor="inputUrl " className="label3">
+            Loading...
+          </label>
+        ) : (
+          <label htmlFor="inputUrl " className="label1">
+            URL
+          </label>
+        )}
+
         <input
           type="text"
           id="inputUrl"
