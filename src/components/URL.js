@@ -4,6 +4,7 @@ import axios from 'axios';
 function URL() {
 const [value, setValue] = useState(null);
 const [input, setInput] = useState("");
+const [err,setError] = useState(null);
 const [loading,setloading]=useState(false);
 const handleInputChange = (e) => {
   setInput(e.target.value);
@@ -18,7 +19,11 @@ const handleURL = () => {
     .then(({ data: { shortUrl } }) => {
       setValue(shortUrl);
       setloading(false);
-    });
+    }).catch(err=>{
+       setloading(false);
+       setError("SORRY! Failed to load data!!,It's seems you have typed wrong url.")
+    })
+    ;
 };
 
 return (
@@ -51,6 +56,7 @@ return (
       </button>
       <br />
       <br />
+      {err?(<p className="error">{err}</p>):null}
       {value ? (
         <div className="form-group">
           <label htmlFor="showUrl" className="label2">

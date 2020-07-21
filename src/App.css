@@ -28,3 +28,9 @@
   font-weight: bolder;
   color: rgba(245, 57, 0, 0.931);
 }
+
+.error{
+  font-size: 36px;
+  font-weight: bold;
+  color:rgb(245, 0, 0);
+}
