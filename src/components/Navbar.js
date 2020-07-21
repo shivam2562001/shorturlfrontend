@@ -4,7 +4,7 @@ function Navbar(){
 return (
   <>
     <nav className="navbar navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <span className="navbar-brand">
         <img
           src={process.env.PUBLIC_URL + "/url.png"}
           width="200"
@@ -12,7 +12,7 @@ return (
           alt="icon"
         />
         <span className="head">SHORT-URL</span>
-      </a>
+      </span>
     </nav>
   </>
 );
